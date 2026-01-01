@@ -8,8 +8,8 @@ extension PadingDegeriAta on Widget {
   }
 
   Widget padingDegeriSymetric({
-    required double? horizontal,
-    required double? vertical,
+     double? horizontal,
+     double? vertical,
   }) {
     return Padding(
       padding: EdgeInsets.symmetric(
