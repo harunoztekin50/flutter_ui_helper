@@ -2,21 +2,35 @@ library flutter_ui_helper;
 
 import 'package:flutter/widgets.dart';
 
+/* 
+   SizedBox(
+    height: 40,
+    child: TextFormField(
+      decoration: InputDecoration(
+        labelText: "password",
+        suffixIcon: IconButton(
+        border: const OutlineInputBorder(),
+      ),
+      obscureText: obscure,
+    ),
+  ).padingDegeriSymetric(
+    vertical: PadingEnums.padding08.padingDegeriAta(),
+    horizontal: PadingEnums.padding30.padingDegeriAta(),
+  ),
+*/
+
 extension PadingDegeriAta on Widget {
   Widget padingDegeriAll(double deger) {
     return Padding(padding: EdgeInsets.all(deger), child: this);
   }
 
-  Widget padingDegeriSymetric({
-     double? horizontal,
-     double? vertical,
-  }) {
+  Widget padingDegeriSymetric({double? horizontal, double? vertical}) {
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: vertical ?? 0,
         horizontal: horizontal ?? 0,
       ),
-       child: this
+      child: this,
     );
   }
 
@@ -33,7 +47,7 @@ extension PadingDegeriAta on Widget {
         top: top ?? 0,
         bottom: bottom ?? 0,
       ),
-       child: this
+      child: this,
     );
   }
 }
