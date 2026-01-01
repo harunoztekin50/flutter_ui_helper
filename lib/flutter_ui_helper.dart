@@ -16,6 +16,7 @@ extension PadingDegeriAta on Widget {
         vertical: vertical ?? 0,
         horizontal: horizontal ?? 0,
       ),
+       child: this
     );
   }
 
@@ -32,6 +33,7 @@ extension PadingDegeriAta on Widget {
         top: top ?? 0,
         bottom: bottom ?? 0,
       ),
+       child: this
     );
   }
 }
