@@ -1,4 +1,97 @@
-include: package:flutter_lints/flutter.yaml
+include: package:flutter_lints/flutter.yaml  # Flutter ekibinin önerdiği temel kural setini baz al
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+analyzer:
+  exclude:
+    - "**/*.g.dart"        # build_runner ile üretilen dosyaları analiz etme
+    - "**/*.freezed.dart"  # freezed tarafından üretilen dosyaları analiz etme
+    - "**/*.gen.dart"      # otomatik üretilen diğer dosyaları analiz etme
+    - "**/*.mocks.dart"    # mock dosyalarını analiz dışı bırak
+  errors:
+    missing_required_param: error            # required parametresiz çağrıyı hata yap
+    missing_return: error                    # fonksiyon dönüş değeri eksikse hata yap
+    dead_code: error                         # asla çalışmayacak kodu (dead code) hata say
+    invalid_override_of_non_virtual_member: error  # yanlış override’ları yakala
+    unused_local_variable: error             # tanımlanıp kullanılmayan lokal değişkeni hata say
+    unused_import: error                     # kullanılmayan import’ları hata say
+    unreachable_from_main: error             # main’den erişilemeyen, boşa duran kodu hata say
+
+linter:
+  rules:
+    #### STİL / TUTARLILIK ####
+    always_use_package_imports: true         # import’ları package:proje/... şeklinde yazmaya zorlar
+    prefer_single_quotes: true               # string’lerde varsayılan olarak tek tırnak kullan
+    sort_child_properties_last: true         # Widget içindeki child parametresini her zaman en alta koy
+    sort_constructors_first: true            # sınıfın içinde constructor’lar en üstte dursun
+    sort_unnamed_constructors_first: true    # isimsiz constructor, isimlilerden önce gelsin
+    sort_pub_dependencies: true              # pubspec’te dependencies alfabetik sıralansın
+    use_super_parameters: true               # super.key gibi kısaltılmış constructor parametrelerini kullandırır
+    require_trailing_commas: true            # çok satırlı argüman/collection’larda sona virgül koymayı zorunlu kılar
+
+    #### CONST / IMMUTABILITY ####
+    prefer_const_constructors: true          # const verilebilen widget constructor’larını const yap
+    prefer_const_constructors_in_immutables: true  # immutable sınıflarda const constructor kullan
+    prefer_const_declarations: true          # değişmeyen değerleri const olarak tanımlamaya zorla
+    prefer_final_fields: true                # field değişmiyorsa final olarak tanımla
+    prefer_final_locals: true                # lokal değişken değişmiyorsa final yap
+    prefer_final_in_for_each: true           # forEach içindeki değişkenleri final tut
+    unnecessary_const: true                  # gereksiz const kullanımlarını uyarır (örneğin zaten const context içindeyken)
+    unnecessary_final: true                  # gereksiz final kullanımını (örneğin tekrar atanacak yerde) uyarır
+
+    #### OKUNABİLİRLİK ####
+    always_declare_return_types: true        # fonksiyonların dönüş tipini mutlaka açıkça yaz
+    type_annotate_public_apis: true          # public metot/değişkenlerde tipi mutlaka belirt
+    avoid_positional_boolean_parameters: true  # anlamı belli olmayan bool parametreleri positional kullanma (isimli parametre kullan)
+    use_full_hex_values_for_flutter_colors: true  # renkleri 0xFFRRGGBB formatıyla tam yaz (opacity dahil)
+    sized_box_for_whitespace: true           # sadece boşluk için Container yerine SizedBox kullan
+    prefer_relative_imports: false           # relative import yerine package import kullan (üstteki kuralla uyumlu)
+
+    #### GÜVENLİK / HATA ÖNLEME ####
+    avoid_print: true                        # doğrudan print yerine debugPrint ya da kendi log fonksiyonunu kullan
+    avoid_empty_else: true                   # içi boş else bloklarını yasaklar
+    avoid_init_to_null: true                 # değişkenleri gereksiz yere = null ile başlatma
+    avoid_shadowing_type_parameters: true    # generic tip isimlerini gölgelemeyi engeller
+    null_closures: true                      # null closure kullanımlarını engeller (bazı API’lerde bug’a sebep olabilir)
+    unnecessary_null_in_if_null_operators: true  # ?? operatöründe gereksiz null kullanımını uyarır
+    unnecessary_nullable_for_final_variable_declarations: true  # final değişkenin nullable olmasına gerek yoksa uyarır
+    avoid_returning_null_for_future: true    # Future dönen fonksiyonlarda null dönmeyi engeller
+    avoid_returning_null_for_void: true      # void dönen fonksiyonlarda null dönmeyi engeller
+    empty_catches: true                      # catch (e) {} gibi içi boş catch bloklarını yasaklar (hata yutma)
+    empty_constructor_bodies: true           # {} ile boş gövde yerine ; kullan (gereksiz gövde oluşturma)
+    use_build_context_synchronously: true    # async/await sonrası context kullanımlarını kontrol eder (disposed context hatalarını önler)
+
+    #### PERFORMANS ####
+    avoid_unnecessary_containers: true       # sadece dekorasyonsuz, boş Container kullanımını engeller (gereksiz widget derinliğini azaltır)
+    avoid_redundant_argument_values: true    # default ile aynı değeri tekrar argüman olarak vermeyi uyarır
+    prefer_spread_collections: true          # list/Map birleştirmelerinde ...spread kullanmaya yönlendirir
+    prefer_if_elements_to_conditional_expressions: true  # collection içinde if kullanmayı şartlı expression’a tercih eder
+    prefer_inlined_adds: true                # koleksiyona eleman eklerken inline add kullanmayı tercih eder
+    use_is_even_rather_than_modulo: true     # sayı çift mi kontrolünde % 2 == 0 yerine isEven kullanımını önerir
+    prefer_contains: true                    # list.indexOf(x) != -1 yerine list.contains(x) kullan
+
+    #### DART 3 / MODERN DİL ÖZELLİKLERİ ####
+    use_enums: true                          # sabit setleri yönetirken enum kullanımını teşvik eder
+    use_colored_box: true                    # sadece renk vermek için Container yerine ColoredBox kullan
+    use_decorated_box: true                  # sadece decoration için Container yerine DecoratedBox kullan
+    use_late_for_private_fields_and_variables: true  # hemen initialize edilmeyecek private field’larda late usage önerir
+    use_string_in_part_of_directives: true   # part of direktiflerinde string syntax kullan
+    unreachable_switch_case: true            # switch içinde asla çalışmayacak case’leri yakalar
+    collection_methods_unrelated_type: true  # yanlış tip koleksiyon metod çağrılarını yakalar (tip güvenliği)
+
+    #### FLUTTER ÖZEL ####
+    use_key_in_widget_constructors: true     # Widget constructor’larında key parametresini eklemeyi zorunlu kılar
+    prefer_const_literals_to_create_immutables: true  # değişmeyecek list/map/set literalleri const yap
+    avoid_unnecessary_stateful_widgets: true # StatefulWidget yerine Stateless ile çözülebilecek yerleri uyarır
+    prefer_stateless_widget: false           # her şeyi Stateless’a çevir diye zorlamasın diye kapalı bırakıyoruz
+    use_named_constants: true                # magic number/string yerine isimlendirilmiş sabit kullan
+
+    #### DİSİPLİN / TEMİZ KOD ####
+    cascade_invocations: true                # aynı nesne üzerinde birden fazla işlem yaparken .. (cascade) kullanımını teşvik eder
+    prefer_expression_function_bodies: true  # tek satırlık fonksiyonları => ile yazmaya yönlendirir
+    unnecessary_lambdas: true                # direkt fonksiyon referansı verilebilecek yerde gereksiz lambda’yı uyarır
+    avoid_renaming_method_parameters: true   # override edilen metot parametre isimlerini farklılaştırma (okunabilirliği koru)
+    avoid_types_on_closure_parameters: true  # closure parametrelerinde tipi Dart’ın kendisinin çıkarmasını önerir (gereksiz yazımı azaltır)
+
+    #### TEST / GENEL DART TEMİZLİĞİ ####
+    avoid_annotating_with_dynamic: true      # dynamic tipi mümkün olduğunca açıkça kullanma, gerekmedikçe kaçın
+    avoid_returning_this: true               # this return eden builder tarzı API’leri kısıtlar (çoğu durumda gereksizdir)
+    prefer_void_to_null: true                # null döndürmek yerine void veya anlamlı bir tip kullan
