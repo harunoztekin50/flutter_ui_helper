@@ -23,7 +23,6 @@ linter:
     sort_child_properties_last: true         # Widget içindeki child parametresini her zaman en alta koy
     sort_constructors_first: true            # sınıfın içinde constructor’lar en üstte dursun
     sort_unnamed_constructors_first: true    # isimsiz constructor, isimlilerden önce gelsin
-    sort_pub_dependencies: true              # pubspec’te dependencies alfabetik sıralansın
     use_super_parameters: true               # super.key gibi kısaltılmış constructor parametrelerini kullandırır
     require_trailing_commas: true            # çok satırlı argüman/collection’larda sona virgül koymayı zorunlu kılar
 
@@ -34,8 +33,6 @@ linter:
     prefer_final_fields: true                # field değişmiyorsa final olarak tanımla
     prefer_final_locals: true                # lokal değişken değişmiyorsa final yap
     prefer_final_in_for_each: true           # forEach içindeki değişkenleri final tut
-    unnecessary_const: true                  # gereksiz const kullanımlarını uyarır (örneğin zaten const context içindeyken)
-    unnecessary_final: true                  # gereksiz final kullanımını (örneğin tekrar atanacak yerde) uyarır
 
     #### OKUNABİLİRLİK ####
     always_declare_return_types: true        # fonksiyonların dönüş tipini mutlaka açıkça yaz
@@ -74,14 +71,11 @@ linter:
     use_decorated_box: true                  # sadece decoration için Container yerine DecoratedBox kullan
     use_late_for_private_fields_and_variables: true  # hemen initialize edilmeyecek private field’larda late usage önerir
     use_string_in_part_of_directives: true   # part of direktiflerinde string syntax kullan
-    unreachable_switch_case: true            # switch içinde asla çalışmayacak case’leri yakalar
     collection_methods_unrelated_type: true  # yanlış tip koleksiyon metod çağrılarını yakalar (tip güvenliği)
 
     #### FLUTTER ÖZEL ####
     use_key_in_widget_constructors: true     # Widget constructor’larında key parametresini eklemeyi zorunlu kılar
     prefer_const_literals_to_create_immutables: true  # değişmeyecek list/map/set literalleri const yap
-    avoid_unnecessary_stateful_widgets: true # StatefulWidget yerine Stateless ile çözülebilecek yerleri uyarır
-    prefer_stateless_widget: false           # her şeyi Stateless’a çevir diye zorlamasın diye kapalı bırakıyoruz
     use_named_constants: true                # magic number/string yerine isimlendirilmiş sabit kullan
 
     #### DİSİPLİN / TEMİZ KOD ####
